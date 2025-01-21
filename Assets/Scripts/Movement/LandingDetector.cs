@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class Legs : MonoBehaviour
+public class LandingDetector : MonoBehaviour
 {
     private bool _isLanded = false;
 

@@ -4,14 +4,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
-    [SerializeField] private Legs _legs;
+    [SerializeField] private LandingDetector _landingDetector;
     [SerializeField] private float _jumpForce;
 
     private Rigidbody2D _rigidbody;
-    private bool _isOnGround = false;
+    private bool _isLanded = false;
 
     public event Action Jumped;
-    public event Action<bool> GroundCollidedChanged;
+    public event Action<bool> Landed;
 
     private void Awake()
     {
@@ -20,33 +20,33 @@ public class Jumper : MonoBehaviour
 
     private void OnEnable()
     {
-        _legs.Landed += ChangeGroundCollided;
+        _landingDetector.Landed += ChangeLanded;
     }
 
     private void OnDisable()
     {
-        _legs.Landed -= ChangeGroundCollided;
+        _landingDetector.Landed -= ChangeLanded;
     }
 
     public void Jump()
     {
-        if (_isOnGround)
+        if (_isLanded)
         {
             SetVelocity(_jumpForce);
             Jumped?.Invoke();
-            SetGroundCollided(false);
+            SetLanded(false);
         }
     }
 
-    private void ChangeGroundCollided()
+    private void ChangeLanded()
     {
-        SetGroundCollided(true);
+        SetLanded(true);
     }
 
-    private void SetGroundCollided(bool value)
+    private void SetLanded(bool value)
     {
-        _isOnGround = value;
-        GroundCollidedChanged?.Invoke(value);
+        _isLanded = value;
+        Landed?.Invoke(value);
     }
 
     private void SetVelocity(float y)

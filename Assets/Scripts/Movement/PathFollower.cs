@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Mover))]
 public class PathFollower : MonoBehaviour
 {
-    private const float ZERO_AXIS = 0f;
+    private const float ZeroAxis = 0f;
 
     [SerializeField] private Transform _waypointsPath;
     [SerializeField] private float _durationOfWaiting;
@@ -28,7 +28,7 @@ public class PathFollower : MonoBehaviour
         if (IsWaypointReached())
         {
             _isReached = true;
-            _horizontalAxis = ZERO_AXIS;
+            _horizontalAxis = ZeroAxis;
             _currentWaypoint = ++_currentWaypoint % _waypoints.Length;
 
             StartCoroutine(WaitAndDefineAxis());
@@ -61,7 +61,7 @@ public class PathFollower : MonoBehaviour
     {
         if (_isReached == false)
         {
-            if (_horizontalAxis > ZERO_AXIS)
+            if (_horizontalAxis > ZeroAxis)
                 return transform.position.x > _waypoints[_currentWaypoint].position.x;
             else
                 return transform.position.x < _waypoints[_currentWaypoint].position.x;

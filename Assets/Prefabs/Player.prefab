@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8194946267260882991}
   - component: {fileID: 7083390851902196700}
-  - component: {fileID: 4254008984984380919}
+  - component: {fileID: 9149672875991499539}
   m_Layer: 6
-  m_Name: Legs
+  m_Name: Landing Detector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4201282, y: 0.059595376}
   m_EdgeRadius: 0
---- !u!114 &4254008984984380919
+--- !u!114 &9149672875991499539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1294928578282641137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccc9178e014dd045adf2079ac1cf92a, type: 3}
+  m_Script: {fileID: 11500000, guid: aea68276fbf0f2945825344881258f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2018510799509131492
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e85bc97b4f4bc4f972cb0cc83d34bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _legs: {fileID: 4254008984984380919}
+  _landingDetector: {fileID: 9149672875991499539}
   _jumpForce: 15
 --- !u!114 &5593279326791294203
 MonoBehaviour:
@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 8238302646581564055}
   - component: {fileID: 3561958809836278081}
   - component: {fileID: 1409351068925687690}
+  - component: {fileID: 7806250900180164156}
   m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
@@ -373,3 +374,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mover: {fileID: 4441863897234260092}
   _jumper: {fileID: 4036207835318564002}
+--- !u!114 &7806250900180164156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739888265470822839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ed5dfc9c22e9143a39036361bab7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mover: {fileID: 4441863897234260092}
