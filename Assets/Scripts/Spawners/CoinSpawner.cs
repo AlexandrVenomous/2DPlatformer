@@ -80,6 +80,7 @@ public class CoinSpawner : MonoBehaviour
         Transform spawnPoint = _spawnPoints[index];
 
         _spawnPoints.RemoveAt(index);
+
         return spawnPoint;
     }
 }

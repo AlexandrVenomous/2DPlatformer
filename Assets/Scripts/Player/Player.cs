@@ -1,39 +1,38 @@
-using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Mover), typeof(Jumper), typeof(Wallet))]
+[RequireComponent(typeof(InputReader), typeof(Mover), typeof(Jumper))]
 public class Player : MonoBehaviour
 {
-    private const string Horizontal = "Horizontal";
-    private const string Jump = "Jump";
-
+    private InputReader _inputReader;
     private Mover _mover;
     private Jumper _jumper;
-    private Wallet _wallet;
-
-    public event Action<Coin> CoinCollected; 
 
     private void Awake()
     {
+        _inputReader = GetComponent<InputReader>();
         _mover = GetComponent<Mover>();
         _jumper = GetComponent<Jumper>();
-        _wallet = GetComponent<Wallet>();
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        _mover.Move(Input.GetAxisRaw(Horizontal));
-
-        if (Input.GetButton(Jump))
-            _jumper.Jump();
+        _inputReader.AxisSet += Move;
+        _inputReader.JumpButtonPressed += Jump;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnDisable()
     {
-        if (other.gameObject.TryGetComponent(out Coin coin))
-        {
-            CoinCollected?.Invoke(coin);
-            _wallet.AddMoney(coin.GetDenomination());
-        }
+        _inputReader.AxisSet -= Move;
+        _inputReader.JumpButtonPressed -= Jump;
+    }
+
+    private void Move(float horizontalAxis)
+    {
+        _mover.Move(horizontalAxis);
+    }
+
+    private void Jump()
+    {
+        _jumper.Jump();
     }
 }

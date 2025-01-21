@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
     public int GetDenomination()
     {
         Collected?.Invoke(this);
+
         return _denomination;
     }
 }
